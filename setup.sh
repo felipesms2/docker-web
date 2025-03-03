@@ -6,9 +6,9 @@ sudo chmod -R 777 . && \
 cd "$FOLDER_NAME"  && \
 rm -rf .git README.md && \
 cd .. && \
-mv "$FOLDER_NAME"/* "$FOLDER_NAME"/.*
-mv -f ports.conf resources/config/
-mv -f 000-default.conf resources/config/
-mv -f envvars resources/config/
+mv "$FOLDER_NAME"/ports.conf "$FOLDER_NAME"/000-default.conf "$FOLDER_NAME"/envvars "$FOLDER_NAME"/entrypoint.sh "$FOLDER_NAME"/docker-compose.yaml .
+mv -f ports.conf resources/config
+mv -f 000-default.conf resources/config
+mv -f envvars resources/config
 rm setup.sh -rf
 rm "$FOLDER_NAME" -rf
