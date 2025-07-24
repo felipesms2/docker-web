@@ -1,11 +1,8 @@
-# Uncomment the lines that you want to use
-# mkdir /old-wp
-# chmod -R 777 /old-wp
 apt update
 apt install zsh -y
 useradd -m -s /usr/bin/zsh sites
 sudo usermod -aG sudo sites
-pip install requests beautifulsoup4 --break-system-packages
+# pip install requests beautifulsoup4 --break-system-packages
 chmod -R 777 /app/
 rm -rf /app/database/database.sqlite
 touch /app/database/database.sqlite && \

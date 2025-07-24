@@ -1,20 +1,8 @@
 services:
-  savepoint:
-    container_name: web-runtime
+  web-server:
     image: felipesms/liga:1.0
     ports:
       - "8080:80"
-      - "8081:81"
-      - "8082:82"
-      - "8083:83"
-      - "8084:84"
-      - "8085:85"
-      - "8086:86"
-      - "8087:87"
-      - "8088:88"
-      - "8089:89"
-      - "8090:90"
-      - "443:443"
     volumes:
       - ./:/app/
       - ./resources/config/ports.conf:/etc/apache2/ports.conf
@@ -25,9 +13,8 @@ services:
     working_dir: /app/
     depends_on:
       - mariadb
-  mariadb:
+  mariadb:  
     image: mariadb:latest
-    container_name: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: null
       MARIADB_DATABASE: savepoint
@@ -40,7 +27,6 @@ services:
       - mariadb_data:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin
     environment:
       PMA_HOST: mariadb
       PMA_USER: root
@@ -50,8 +36,5 @@ services:
       - "65009:80"
     depends_on:
       - mariadb
-
-volumes:
-  mariadb_data:
 
     
