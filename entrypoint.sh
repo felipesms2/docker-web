@@ -6,7 +6,7 @@ project_type="${PROJECT_TYPE:-laravel}"
 case "$project_type" in
   static|node-static)
     # Apache serves /app for static sites and /app/dist for Node build output.
-    exec apache2ctl -D FOREGROUND
+    exec sudo apache2ctl -D FOREGROUND
     ;;
   laravel)
     cd /app
@@ -24,7 +24,7 @@ case "$project_type" in
       php artisan key:generate --force
     fi
 
-    exec apache2ctl -D FOREGROUND
+    exec sudo apache2ctl -D FOREGROUND
     ;;
   *)
     echo "PROJECT_TYPE invalido: $project_type (use laravel, static ou node-static)" >&2
