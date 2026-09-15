@@ -1,6 +1,6 @@
 FROM composer:2 AS composer
 
-FROM felipesms/liga:1.1
+FROM felipesms/liga:1.2
 
 USER root
 

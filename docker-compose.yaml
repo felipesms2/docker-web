@@ -1,6 +1,8 @@
 services:
   web-server:
-    image: felipesms/liga:1.0
+    image: felipesms/liga:1.2
+    env_file:
+      - .docker-web.env
     ports:
       - "8080:80"
     volumes:
@@ -9,10 +11,8 @@ services:
       - ./resources/config/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./resources/config/envvars:/etc/apache2/envvars
       - ./entrypoint.sh:/app/entrypoint.sh
-    command: ["bash", "-c", "bash /app/entrypoint.sh && tail -f /dev/null"]
+    command: ["bash", "/app/entrypoint.sh"]
     working_dir: /app/
-    depends_on:
-      - mariadb
   mariadb:  
     image: mariadb:latest
     environment:
@@ -25,6 +25,7 @@ services:
       - "3340:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
+    profiles: ["laravel"]
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     environment:
@@ -36,5 +37,7 @@ services:
       - "65009:80"
     depends_on:
       - mariadb
+    profiles: ["laravel"]
 
-    
+volumes:
+  mariadb_data:
