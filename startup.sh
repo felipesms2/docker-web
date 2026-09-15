@@ -50,6 +50,11 @@ cp "$source_dir/templates/$PROJECT_TYPE/000-default.conf" "$target_dir/resources
 cp "$source_dir/ports.conf" "$target_dir/resources/config/ports.conf"
 cp "$source_dir/envvars" "$target_dir/resources/config/envvars"
 
+if [ "$PROJECT_TYPE" = "node-static" ]; then
+  cp "$source_dir/templates/node-static/build-static.sh" "$target_dir/build-static.sh"
+  chmod +x "$target_dir/build-static.sh"
+fi
+
 printf 'PROJECT_TYPE=%s\nINSTALL_DEPENDENCIES=true\n' "$PROJECT_TYPE" > "$target_dir/.docker-web.env"
 chmod +x "$target_dir/entrypoint.sh"
 
